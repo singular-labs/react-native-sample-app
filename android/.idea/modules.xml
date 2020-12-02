@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SingularSampleApp.iml" filepath="$PROJECT_DIR$/.idea/modules/SingularSampleApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SingularSampleApp.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SingularSampleApp.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1493972918/SingularSampleApp.react-native-community_masked-view.iml" filepath="$PROJECT_DIR$/.idea/modules/-1493972918/SingularSampleApp.react-native-community_masked-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1680319539/SingularSampleApp.react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/.idea/modules/-1680319539/SingularSampleApp.react-native-gesture-handler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/746753784/SingularSampleApp.react-native-picker_picker.iml" filepath="$PROJECT_DIR$/.idea/modules/746753784/SingularSampleApp.react-native-picker_picker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-175417809/SingularSampleApp.react-native-reanimated.iml" filepath="$PROJECT_DIR$/.idea/modules/-175417809/SingularSampleApp.react-native-reanimated.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/771994870/SingularSampleApp.react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/.idea/modules/771994870/SingularSampleApp.react-native-safe-area-context.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-902254450/SingularSampleApp.react-native-screens.iml" filepath="$PROJECT_DIR$/.idea/modules/-902254450/SingularSampleApp.react-native-screens.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1619466025/SingularSampleApp.react-native-vector-icons.iml" filepath="$PROJECT_DIR$/.idea/modules/1619466025/SingularSampleApp.react-native-vector-icons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1829297164/SingularSampleApp.singular-react-native.iml" filepath="$PROJECT_DIR$/.idea/modules/1829297164/SingularSampleApp.singular-react-native.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,7 @@
+name: Singular-v9.5.1-1cf34a2d.master
+env: release
+git_commit: 1cf34a2d
+git_branch: master
+version_name: 9.5.1
+version_code:1
+build_date: Tue, 17 Nov 2020 17:34:33 +0530
