@@ -11,7 +11,8 @@ import {
   View,
   TextInput,
   Button,
-  Alert
+  Alert,
+    Image
 } from 'react-native';
 import {Singular, SingularConfig} from 'singular-react-native';
 import Utils from "./Utils";
@@ -47,6 +48,9 @@ export default class Identity extends Component {
     return (
         <>
           <View style={Utils.styles.viewContainer}>
+            <Image source={require('./singular_full_logo.png')}
+                   style={Utils.styles.image}
+            />
             <TextInput
                 style={Utils.styles.container}
                 placeholder="Custom User Id"

@@ -17,37 +17,27 @@ import DeepLinks from "./DeepLinks";
 import {Singular, SingularConfig} from "singular-react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const Tab = createBottomTabNavigator();
 
 export default class App extends React.Component {
-
     constructor(props) {
         super(props);
-        this.deeplink = "test";
-
-        this.customnavigatior = React.createRef();
+        this.navigationRef = React.createRef();
         const config = new SingularConfig("", "");
         config.withSingularLink(singularLinksParams => {
-            const deeplink = singularLinksParams.deeplink;
-            const passthrough = singularLinksParams.passthrough;
-            const isDeferred = singularLinksParams.isDeferred;
+             this.deeplink = singularLinksParams.deeplink;
+             this.passthrough = singularLinksParams.passthrough;
+             this.isDeferred = singularLinksParams.isDeferred;
             // Add your code here to handle the deep link
-
+            this.navigationRef.current?.navigate("Deep Links");
         });
         Singular.init(config);
     }
 
-    componentDidMount() {
-        if (this.deeplink) {
-            this.customnavigatior.navigate("Deep_Links");
-        }
-    }
-
     render() {
     return (
-            <NavigationContainer ref={this.customnavigatior}>
+            <NavigationContainer ref={this.navigationRef}>
                     <Tab.Navigator
                         screenOptions={({ route }) => ({
                             tabBarIcon: ({ focused, color, size }) => {
@@ -57,7 +47,7 @@ export default class App extends React.Component {
                                     return <FontAwesome name='dollar' size={size} color={color} />
                                 } else if (route.name === 'Identity') {
                                     return <Ionicons name='person' size={size} color={color} />
-                                } else if (route.name === 'Deep_Links') {
+                                } else if (route.name === 'Deep Links') {
                                     return <FontAwesome name='link' size={size} color={color} />
                                 }
                             },
@@ -70,8 +60,8 @@ export default class App extends React.Component {
                     <Tab.Screen name="Custom Events" component={CustomEvents} />
                     <Tab.Screen name="Revenue" component={Revenue} />
                     <Tab.Screen name="Identity" component={Identity} />
-                        <Tab.Screen name="Deep_Links">
-                            {props => <DeepLinks {...props} apiKey="hey there testing" />}
+                        <Tab.Screen name="Deep Links">
+                            {props => <DeepLinks {...props} deeplink={this.deeplink} passthrough={this.passthrough} isDeferred={this.isDeferred} />}
                         </Tab.Screen>
                     </Tab.Navigator>
         </NavigationContainer>

@@ -11,7 +11,8 @@ import {
   View,
   TextInput,
   Button,
-    Text
+  Text,
+    Image
 } from 'react-native';
 
 import {Singular, SingularConfig} from 'singular-react-native';
@@ -79,33 +80,13 @@ export default class Revenue extends Component {
     return Number(this.state.revenue);
   }
 
-  showPopover() {
-    return (
-        <>
-          Keyboard.dismiss;
-
-          <Picker
-              selectedValue='testing'
-              style={{height: 50, width: 100}}
-              onValueChange={(itemValue, itemIndex) =>
-                  this.setState({currency: itemValue})
-              }>
-            <Picker.Item label="EUR" value="EUR" />
-            <Picker.Item label="GBP" value="GBP" />
-            <Picker.Item label="ILS" value="ILS" />
-            <Picker.Item label="INR" value="INR" />
-            <Picker.Item label="JPY" value="JPY" />
-            <Picker.Item label="KRW" value="KRW" />
-            <Picker.Item label="USD" value="USD" />
-          </Picker>
-          </>
-    )
-  }
-
   render() {
     return (
         <>
           <View style={Utils.styles.viewContainer}>
+            <Image source={require('./singular_full_logo.png')}
+                   style={Utils.styles.image}
+            />
             <TextInput
                 style={Utils.styles.container}
                 placeholder="Revenue Event Name"
@@ -115,7 +96,7 @@ export default class Revenue extends Component {
             <TextInput
                 style={Utils.styles.container}
                 placeholder="Currency"
-                onChangeText={this.showPopover}
+                onChangeText={(text) => this.setState({currency: text})}
                 value={this.state.currency}
             />
             <TextInput

@@ -8,10 +8,11 @@
 
 import React, { Component } from 'react';
 import {
-  View,
-  TextInput,
-  Button,
-    Text
+    View,
+    TextInput,
+    Button,
+    Text,
+    Image
 } from 'react-native';
 import {Singular, SingularConfig} from 'singular-react-native';
 import Utils from "./Utils";
@@ -21,33 +22,26 @@ export default class DeepLinks extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      deeplink: 'default',
-      passthrough: 'default',
-      isDeferred:  'default'
-    }
-  }
-
-  FindFunEvent(test) {
-    this.setState({apiKey: test})
-    console.log(test);
-  }
-
-  _handlePress() {
-    alert(this.state.apiKey);
+    this.deeplink = props.deeplink;
+    this.passthrough = props.passthrough;
+    this.isDeferred =  props.isDeferred ? "Yes" : "No";
   }
 
   render() {
     return (
         <>
           <View style={Utils.styles.viewContainer}>
+            <Image source={require('./singular_full_logo.png')}
+            style={Utils.styles.image}
+            />
             <TextInput
                 style={Utils.styles.container}
                 value="Deeplink"
             />
             <TextInput
                 style={Utils.styles.deeplinkContainer}
-                value={this.state.deeplink}
+                value={this.deeplink}
+                defaultValue="App did not open with a deep link"
             />
             <TextInput
                 style={Utils.styles.container}
@@ -56,7 +50,8 @@ export default class DeepLinks extends Component {
 
             <TextInput
                 style={Utils.styles.deeplinkContainer}
-                value={this.state.passthrough}
+                value={this.passthrough}
+                defaultValue="App did not open with a deep link"
             />
             <TextInput
                 style={Utils.styles.container}
@@ -64,7 +59,8 @@ export default class DeepLinks extends Component {
             />
             <TextInput
                 style={Utils.styles.deeplinkContainer}
-                value={this.state.isDeferred}
+                value={this.isDeferred}
+                defaultValue="App did not open with a deep link"
             />
           </View>
         </>

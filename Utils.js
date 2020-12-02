@@ -25,7 +25,6 @@ const Utils = {
             flex: 1,
             backgroundColor: '#fff',
             alignItems: 'center',
-            justifyContent: 'center',
         },
         deeplinkContainer: {
             height: 40,
@@ -33,8 +32,15 @@ const Utils = {
             padding: 10,
             fontSize: 15,
             color: 'gray'
+        },
+        image:{
+            width: 280,
+            height: 116,
+            alignItems: 'center',
+            resizeMode:'contain',
+            marginTop: 50,
         }
-    })
+    }),
 }
 
 export default Utils;
