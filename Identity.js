@@ -36,7 +36,7 @@ export default class Identity extends Component {
     // Once set, the Custom User Id will persist between runs until `Singular.unsetCustomUserId()` is called.
     // This can also be called before SDK init if you want the first session to include the Custom User Id.
     Singular.setCustomUserId(customUserId);
-    Alert.alert("Custom User Id set to:",customUserId);
+    // Alert.alert("Custom User Id set to:",customUserId);
   }
 
   unsetCustomUserId() {

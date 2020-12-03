@@ -49,7 +49,7 @@ export default class Revenue extends Component {
       return;
     }
      Singular.customRevenue(eventName,currency,revenue);
-     alert("Revenue event sent");
+     // alert("Revenue event sent");
   }
 
   sendRevenueEventWithArgs() {

@@ -53,6 +53,8 @@ const Utils = {
             marginTop: 50,
         }
     })
+
+
 }
 
 export default Utils;

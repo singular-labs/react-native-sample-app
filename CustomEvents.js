@@ -56,7 +56,7 @@ export default class CustomEvents extends Component {
 
     // Reporting a simple event with custom attributes to pass with the event
     Singular.eventWithArgs(eventName,{"value1":"key1", "value2":"key2"});
-    alert("Event sent");
+    // alert("Event sent");
   }
 
   render() {
