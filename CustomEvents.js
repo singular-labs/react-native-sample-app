@@ -54,7 +54,7 @@ export default class CustomEvents extends Component {
     // Note that conversion values may only increase, so only the first call will update it
     Singular.skanUpdateConversionValue(3);
 
-    // Reporting a simple event with your custom attributes to pass with the event
+    // Reporting a simple event with custom attributes to pass with the event
     Singular.eventWithArgs(eventName,{"value1":"key1", "value2":"key2"});
     alert("Event sent");
   }
@@ -72,14 +72,17 @@ export default class CustomEvents extends Component {
                 onChangeText={(text) => this.setState({eventName: text})}
                 value={this.state.eventName}
             />
-            <Button
-                title="Custom Event"
+            <View style={Utils.styles.buttonContainer}>
+            <Button title="Custom Event"
                 onPress={() => this.sendEvent()}
             />
+            </View>
+            <View style={Utils.styles.buttonContainer}>
             <Button
                 title="Custom Event With Attributes"
                 onPress={() => this.sendEventWithAttributes()}
             />
+          </View>
           </View>
         </>
     );

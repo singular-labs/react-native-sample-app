@@ -106,14 +106,18 @@ export default class Revenue extends Component {
                 value={this.state.revenue}
             />
 
+            <View style={Utils.styles.buttonContainer}>
             <Button
                 title="Revenue Event"
                 onPress={() => this.sendRevenueEvent()}
             />
+            </View>
+            <View style={Utils.styles.buttonContainer}>
             <Button
                 title="Revenue Event With Attributes"
                 onPress={() => this.sendRevenueEventWithArgs()}
             />
+            </View>
           </View>
         </>
     );

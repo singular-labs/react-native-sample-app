@@ -1,6 +1,9 @@
 package com.singularsampleapp;
 
+import android.content.Intent;
+
 import com.facebook.react.ReactActivity;
+import net.singular.react_native.SingularBridgeModule;
 
 public class MainActivity extends ReactActivity {
 
@@ -12,4 +15,12 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "SingularSampleApp";
   }
+
+  @Override
+  public void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+    SingularBridgeModule.onNewIntent(intent);
+  }
+
 }
+

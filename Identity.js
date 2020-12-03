@@ -57,14 +57,18 @@ export default class Identity extends Component {
                 onChangeText={(text) => this.setState({customUserId: text})}
                 value={this.state.customUserId}
             />
+            <View style={Utils.styles.buttonContainer}>
             <Button
                 title="Set Custom User Id"
                 onPress={() => this.setCustomUserId()}
             />
+            </View>
+            <View style={Utils.styles.buttonContainer}>
             <Button
                 title="Unset Custom User Id"
                 onPress={() => this.unsetCustomUserId()}
             />
+            </View>
           </View>
         </>
     );

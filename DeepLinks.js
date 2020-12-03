@@ -35,7 +35,7 @@ export default class DeepLinks extends Component {
             style={Utils.styles.image}
             />
             <TextInput
-                style={Utils.styles.container}
+                style={Utils.styles.deeplinkTextContainer}
                 value="Deeplink"
             />
             <TextInput
@@ -44,7 +44,7 @@ export default class DeepLinks extends Component {
                 defaultValue="App did not open with a deep link"
             />
             <TextInput
-                style={Utils.styles.container}
+                style={Utils.styles.deeplinkTextContainer}
                 value="Passthrough"
             />
 
@@ -54,7 +54,7 @@ export default class DeepLinks extends Component {
                 defaultValue="App did not open with a deep link"
             />
             <TextInput
-                style={Utils.styles.container}
+                style={Utils.styles.deeplinkTextContainer}
                 value="Is Deferred"
             />
             <TextInput
