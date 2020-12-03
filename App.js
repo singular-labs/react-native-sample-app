@@ -52,6 +52,7 @@ export default class App extends React.Component {
                                 }
                             },
                         })}
+                        
                         tabBarOptions={{
                             activeTintColor: '#007AFF',
                             inactiveTintColor: 'gray',
