@@ -11,7 +11,7 @@ import {
   View,
   TextInput,
   Button,
-    Image
+  Image
 } from 'react-native';
 import {Singular, SingularConfig} from 'singular-react-native';
 import Utils from './Utils';
@@ -29,7 +29,7 @@ export default class CustomEvents extends Component {
   sendEvent() {
     const eventName = this.state.eventName;
 
-    if (Utils.isEmpty(eventName)) {
+    if (Utils.isNullOrEmpty(eventName)) {
       alert("Please enter a valid event name");
       return;
     }
@@ -45,18 +45,20 @@ export default class CustomEvents extends Component {
   sendEventWithAttributes() {
     const eventName = this.state.eventName;
 
-    if (Utils.isEmpty(eventName)) {
+    if (Utils.isNullOrEmpty(eventName)) {
       alert("Please enter a valid event name");
       return;
     }
 
+    // Singular.skanUpdateConversionValue applies to iOS only
     // Set Conversion Value manually (when using manualSkanConversionManagement)
     // Note that conversion values may only increase, so only the first call will update it
+    // Check out Singular Document for adding SKAN support https://support.singular.net/hc/en-us/articles/360049022091
     Singular.skanUpdateConversionValue(3);
 
     // Reporting a simple event with custom attributes to pass with the event
     Singular.eventWithArgs(eventName,{"value1":"key1", "value2":"key2"});
-    // alert("Event sent");
+    alert("Event sent");
   }
 
   render() {

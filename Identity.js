@@ -12,7 +12,7 @@ import {
   TextInput,
   Button,
   Alert,
-    Image
+  Image
 } from 'react-native';
 import {Singular, SingularConfig} from 'singular-react-native';
 import Utils from "./Utils";
@@ -28,7 +28,7 @@ export default class Identity extends Component {
 
   setCustomUserId() {
     const customUserId = this.state.customUserId;
-    if (Utils.isEmpty(customUserId)) {
+    if (Utils.isNullOrEmpty(customUserId)) {
       alert("Please enter a valid Custom User Id");
       return;
     }
@@ -36,7 +36,7 @@ export default class Identity extends Component {
     // Once set, the Custom User Id will persist between runs until `Singular.unsetCustomUserId()` is called.
     // This can also be called before SDK init if you want the first session to include the Custom User Id.
     Singular.setCustomUserId(customUserId);
-    // Alert.alert("Custom User Id set to:",customUserId);
+    Alert.alert("Custom User Id set to:",customUserId);
   }
 
   unsetCustomUserId() {

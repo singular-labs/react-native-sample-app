@@ -23,15 +23,28 @@ const Tab = createBottomTabNavigator();
 export default class App extends React.Component {
     constructor(props) {
         super(props);
+
+        // This is to use for Singular to navigate to deeplink tab
         this.navigationRef = React.createRef();
-        const config = new SingularConfig("", "");
+
+        const config = new SingularConfig("<API_KEY>", "<API_SECRET>");
         config.withSingularLink(singularLinksParams => {
              this.deeplink = singularLinksParams.deeplink;
              this.passthrough = singularLinksParams.passthrough;
              this.isDeferred = singularLinksParams.isDeferred;
             // Add your code here to handle the deep link
+            // When the app is opened using a deeplink, we open the deeplink tab
             this.navigationRef.current?.navigate("Deep Links");
         });
+
+        // Enable use of SKAN for iOS14 tracking
+        // Singular will call registerAppForAdNetworkAttribution for you
+        config.skAdNetworkEnabled = true;
+
+        // Enable manual conversion value updates
+        // IMPORTANT: set as NO (or just don't set - it defaults to NO) to let Singular manage conversion values
+        config.manualSkanConversionManagement = true;
+
         Singular.init(config);
     }
 
@@ -52,7 +65,7 @@ export default class App extends React.Component {
                                 }
                             },
                         })}
-                        
+
                         tabBarOptions={{
                             activeTintColor: '#007AFF',
                             inactiveTintColor: 'gray',

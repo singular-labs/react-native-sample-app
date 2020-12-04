@@ -8,13 +8,8 @@ target 'SingularSampleApp' do
 
   use_react_native!(:path => config["reactNativePath"])
   pod 'Singular-React-Native', :path => "../node_modules/singular-react-native"
-pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-
-  target 'SingularSampleAppTests' do
-    inherit! :complete
-    # Pods for testing
-  end
 
   # Enables Flipper.
   #
@@ -23,14 +18,5 @@ pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   use_flipper!
   post_install do |installer|
     flipper_post_install(installer)
-  end
-end
-
-target 'SingularSampleApp-tvOS' do
-  # Pods for SingularSampleApp-tvOS
-
-  target 'SingularSampleApp-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
   end
 end

@@ -12,7 +12,7 @@ import {
   TextInput,
   Button,
   Text,
-    Image
+  Image
 } from 'react-native';
 
 import {Singular, SingularConfig} from 'singular-react-native';
@@ -36,11 +36,11 @@ export default class Revenue extends Component {
     const currency = this.state.currency;
     const revenue = this.getRevenue();
 
-    if (Utils.isEmpty(eventName)) {
+    if (Utils.isNullOrEmpty(eventName)) {
       alert("Please enter a valid event name");
       return;
     }
-    if (Utils.isEmpty(currency)) {
+    if (Utils.isNullOrEmpty(currency)) {
       alert("Please enter a valid currency");
       return;
     }
@@ -49,7 +49,7 @@ export default class Revenue extends Component {
       return;
     }
      Singular.customRevenue(eventName,currency,revenue);
-     // alert("Revenue event sent");
+     alert("Revenue event sent");
   }
 
   sendRevenueEventWithArgs() {
@@ -57,11 +57,11 @@ export default class Revenue extends Component {
     const currency = this.state.currency;
     const revenue = this.getRevenue();
 
-    if (Utils.isEmpty(eventName)) {
+    if (Utils.isNullOrEmpty(eventName)) {
       alert("Please enter a valid event name");
       return;
     }
-    if (Utils.isEmpty(currency)) {
+    if (Utils.isNullOrEmpty(currency)) {
       alert("Please enter a valid currency");
       return;
     }
@@ -74,7 +74,7 @@ export default class Revenue extends Component {
   }
 
   getRevenue() {
-    if (Utils.isEmpty(this.state.revenue)) {
+    if (Utils.isNullOrEmpty(this.state.revenue)) {
       return 0;
     }
     return Number(this.state.revenue);

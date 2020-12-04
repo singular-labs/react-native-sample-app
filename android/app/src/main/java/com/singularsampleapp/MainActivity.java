@@ -21,6 +21,5 @@ public class MainActivity extends ReactActivity {
     super.onNewIntent(intent);
     SingularBridgeModule.onNewIntent(intent);
   }
-
 }
 

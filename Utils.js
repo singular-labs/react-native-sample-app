@@ -10,7 +10,7 @@ import React from 'react';
 import {StyleSheet} from "react-native";
 
 const Utils = {
-    isEmpty:function(value){
+    isNullOrEmpty:function(value){
         return value ? value.trim().length == 0 : true;
     },
     styles:StyleSheet.create({
