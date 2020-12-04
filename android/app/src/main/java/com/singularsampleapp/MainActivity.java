@@ -19,6 +19,8 @@ public class MainActivity extends ReactActivity {
   @Override
   public void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
+
+    // Handling Singular links
     SingularBridgeModule.onNewIntent(intent);
   }
 }

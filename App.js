@@ -41,6 +41,10 @@ export default class App extends React.Component {
         // Singular will call registerAppForAdNetworkAttribution for you
         config.skAdNetworkEnabled = true;
 
+        // Use withCustomUserId if you want to have the custom user id on the first session
+        // Once set, the Custom User Id will persist between runs until `Singular.unsetCustomUserId()` is called.
+        config.withCustomUserId("test@email.com");
+
         // Enable manual conversion value updates
         // IMPORTANT: set as NO (or just don't set - it defaults to NO) to let Singular manage conversion values
         config.manualSkanConversionManagement = true;

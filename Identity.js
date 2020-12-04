@@ -33,9 +33,10 @@ export default class Identity extends Component {
       return;
     }
 
+    // If customUserId is not set using SingularConfig, you can use Singular.setCustomUserId("test@email.com").
     // Once set, the Custom User Id will persist between runs until `Singular.unsetCustomUserId()` is called.
-    // This can also be called before SDK init if you want the first session to include the Custom User Id.
     Singular.setCustomUserId(customUserId);
+
     Alert.alert("Custom User Id set to:",customUserId);
   }
 

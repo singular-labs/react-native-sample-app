@@ -45,6 +45,7 @@ static void InitializeFlipper(UIApplication *application) {
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   
+  // Starts a new session when the user opens the app if the session timeout has passed/opened using a Singular Link
   [SingularBridge startSessionWithLaunchOptions:launchOptions];
 
   return YES;
@@ -61,6 +62,7 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
   
+  // Starts a new session when the user opens the app using a Singular Link while it was in the background
   [SingularBridge startSessionWithUserActivity:userActivity];
   return YES;
 }
