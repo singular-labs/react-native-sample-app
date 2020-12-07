@@ -13,6 +13,9 @@ const Utils = {
     isNullOrEmpty:function(value){
         return value ? value.trim().length == 0 : true;
     },
+    isInvalidCurrency:function(value){
+        return this.isNullOrEmpty(value) || value.length != 3;
+    },
     styles:StyleSheet.create({
         container: {
             borderColor: 'gray',

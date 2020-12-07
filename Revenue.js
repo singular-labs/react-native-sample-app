@@ -40,7 +40,7 @@ export default class Revenue extends Component {
       alert("Please enter a valid event name");
       return;
     }
-    if (Utils.isNullOrEmpty(currency)) {
+    if (Utils.isInvalidCurrency(currency)) {
       alert("Please enter a valid currency");
       return;
     }
@@ -61,7 +61,7 @@ export default class Revenue extends Component {
       alert("Please enter a valid event name");
       return;
     }
-    if (Utils.isNullOrEmpty(currency)) {
+    if (Utils.isInvalidCurrency(currency)) {
       alert("Please enter a valid currency");
       return;
     }
@@ -95,7 +95,7 @@ export default class Revenue extends Component {
             />
             <TextInput
                 style={Utils.styles.container}
-                placeholder="Currency"
+                placeholder="ISO currency code eg. USD, EUR…"
                 onChangeText={(text) => this.setState({currency: text})}
                 value={this.state.currency}
             />
