@@ -21,6 +21,7 @@ public class MainActivity extends ReactActivity {
     super.onNewIntent(intent);
 
     // Handling Singular links
+    // This is important to add in order to get Singular Links to work
     SingularBridgeModule.onNewIntent(intent);
   }
 }

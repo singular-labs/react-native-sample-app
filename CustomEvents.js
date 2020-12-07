@@ -34,8 +34,10 @@ export default class CustomEvents extends Component {
       return;
     }
 
-    // Set Conversion Value manually (when using manualSkanConversionManagement)
+    // Singular.skanUpdateConversionValue applies to iOS only
+    // Set Conversion Value manually (when using manualSkanConversionManagement=true)
     // Note that conversion values may only increase, so only the first call will update it
+    // Check out Singular Document for adding SKAN support https://support.singular.net/hc/en-us/articles/360049022091
     Singular.skanUpdateConversionValue(7);
 
     Singular.event(eventName);
@@ -51,7 +53,7 @@ export default class CustomEvents extends Component {
     }
 
     // Singular.skanUpdateConversionValue applies to iOS only
-    // Set Conversion Value manually (when using manualSkanConversionManagement)
+    // Set Conversion Value manually (when using manualSkanConversionManagement=true)
     // Note that conversion values may only increase, so only the first call will update it
     // Check out Singular Document for adding SKAN support https://support.singular.net/hc/en-us/articles/360049022091
     Singular.skanUpdateConversionValue(3);

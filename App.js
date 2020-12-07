@@ -28,6 +28,9 @@ export default class App extends React.Component {
         this.navigationRef = React.createRef();
 
         const config = new SingularConfig("<API_KEY>", "<API_SECRET>");
+        
+        // Handling Singular links
+        // This is important to add in order to get Singular Links to work
         config.withSingularLink(singularLinksParams => {
              this.deeplink = singularLinksParams.deeplink;
              this.passthrough = singularLinksParams.passthrough;
@@ -46,7 +49,7 @@ export default class App extends React.Component {
         config.withCustomUserId("test@email.com");
 
         // Enable manual conversion value updates
-        // IMPORTANT: set as NO (or just don't set - it defaults to NO) to let Singular manage conversion values
+        // IMPORTANT: set as false (or just don't set - it defaults to false) to let Singular manage conversion values
         config.manualSkanConversionManagement = true;
 
         Singular.init(config);
