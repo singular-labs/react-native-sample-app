@@ -47,6 +47,8 @@ export default class App extends React.Component {
         // Use withCustomUserId if you want to have the custom user id on the first session
         // Once set, the Custom User Id will persist between runs until `Singular.unsetCustomUserId()` is called.
         config.withCustomUserId("test@email.com");
+        config.withLoggingEnabled();
+        config.withLogLevel(3)
 
         // Enable manual conversion value updates
         // IMPORTANT: set as false (or just don't set - it defaults to false) to let Singular manage conversion values
