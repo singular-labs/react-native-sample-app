@@ -27,7 +27,13 @@ export default class App extends React.Component {
         // This is to use for Singular to navigate to deeplink tab
         this.navigationRef = React.createRef();
 
+
         const config = new SingularConfig("<API_KEY>", "<API_SECRET>");
+
+        config.withLoggingEnabled();
+
+        config.withLogLevel(3);
+
         
         // Handling Singular links
         // This is important to add in order to get Singular Links to work
