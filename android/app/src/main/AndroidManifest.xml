@@ -20,7 +20,14 @@
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
+            <!--  These tags will enable this activity to be opened with a Singular Link using the "singular://" scheme  -->
+            <data android:scheme="singular" />
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
         </intent-filter>
+
+
       </activity>
     </application>
 </manifest>
