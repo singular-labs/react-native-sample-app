@@ -57,6 +57,10 @@ export default class App extends React.Component {
         // Enable manual conversion value updates
         // IMPORTANT: set as false (or just don't set - it defaults to false) to let Singular manage conversion values
         config.manualSkanConversionManagement = true;
+        config.withConversionValuesUpdatedHandler((values)=>{
+            console.log('conversion values updated ' + values.conversionValue + ' coarse: '  + values.coarse + ' lock: ' + (values.lock ? 'true' : 'false'));
+            
+        })
 
         Singular.init(config);
     }
