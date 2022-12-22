@@ -24,11 +24,8 @@ export default class Skan extends Component {
     this.state = {
       fine: '32',
       coarse: '1',
-
     }
   }
-
-
 
   updateConversionValue() {
     const fine = this.state.fine;
@@ -85,8 +82,8 @@ export default class Skan extends Component {
             <Button title="Update Conversion Value"
                 onPress={() => this.updateConversionValue()}
             />
-            </View>
-            <View style={Utils.styles.buttonContainer}>
+          </View>
+          <View style={Utils.styles.buttonContainer}>
             <Button
                 title="Update Conversion Value (SKAN4)"
                 onPress={() => this.updateConversionValueSkan4()}
