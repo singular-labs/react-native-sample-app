@@ -14,6 +14,7 @@ import CustomEvents from './CustomEvents';
 import Revenue from "./Revenue";
 import Identity from "./Identity";
 import DeepLinks from "./DeepLinks";
+import Skan from "./Skan";
 import {Singular, SingularConfig} from "singular-react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -57,6 +58,11 @@ export default class App extends React.Component {
         // Enable manual conversion value updates
         // IMPORTANT: set as false (or just don't set - it defaults to false) to let Singular manage conversion values
         config.manualSkanConversionManagement = true;
+        config.withConversionValuesUpdatedHandler((values)=>{
+            console.log('conversion values updated ' + values.conversionValue + ' coarse: '  + values.coarse + ' lock: ' + (values.lock ? 'true' : 'false'));
+            
+        })
+
 
         Singular.init(config);
     }
@@ -75,6 +81,8 @@ export default class App extends React.Component {
                                     return <Ionicons name='person' size={size} color={color} />
                                 } else if (route.name === 'Deep Links') {
                                     return <FontAwesome name='link' size={size} color={color} />
+                                }else if (route.name === 'SKAN') {
+                                    return <FontAwesome name='line-chart' size={size} color={color} />
                                 }
                             },
                         })}
@@ -90,6 +98,7 @@ export default class App extends React.Component {
                         <Tab.Screen name="Deep Links">
                             {props => <DeepLinks {...props} deeplink={this.deeplink} passthrough={this.passthrough} isDeferred={this.isDeferred} />}
                         </Tab.Screen>
+                    <Tab.Screen name="SKAN" component={Skan} />
                     </Tab.Navigator>
         </NavigationContainer>
     );
