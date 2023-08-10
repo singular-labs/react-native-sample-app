@@ -1,5 +1,7 @@
 #import "AppDelegate.h"
 
+#import <Singular-React-Native/SingularBridge.h>
+
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -15,7 +17,6 @@
 #import <ReactCommon/RCTTurboModuleManager.h>
 
 #import <react/config/ReactNativeConfig.h>
-
 
 @interface AppDelegate () <RCTCxxBridgeDelegate, RCTTurboModuleManagerDelegate> {
   RCTTurboModuleManager *_turboModuleManager;
@@ -42,6 +43,8 @@
   bridge.surfacePresenter = _bridgeAdapter.surfacePresenter;
 #endif
 
+  [SingularBridge startSessionWithLaunchOptions:launchOptions];
+  
   UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"SingularSampleApp", nil);
 
   if (@available(iOS 13.0, *)) {
@@ -60,6 +63,10 @@
   return YES;
 }
 
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id> * _Nullable))restorationHandler{
+  [SingularBridge startSessionWithUserActivity:userActivity];
+  return YES;
+}
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
