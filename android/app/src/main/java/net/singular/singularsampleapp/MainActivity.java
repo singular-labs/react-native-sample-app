@@ -1,10 +1,19 @@
-package com.singularsampleapp;
+package net.singular.singularsampleapp;
+
+import android.content.Intent;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import net.singular.react_native.SingularBridgeModule;
 
 public class MainActivity extends ReactActivity {
+
+  @Override
+  public void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+    SingularBridgeModule.onNewIntent(intent);
+  }
 
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule
@@ -37,4 +46,5 @@ public class MainActivity extends ReactActivity {
       return reactRootView;
     }
   }
+
 }

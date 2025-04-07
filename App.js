@@ -7,6 +7,20 @@
  */
 
 import React from 'react';
+import {
+  Button,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  useColorScheme,
+  View,
+  Alert,
+} from 'react-native';
+import {
+  Colors,
+} from 'react-native/Libraries/NewAppScreen';
+
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -18,6 +32,7 @@ import Skan from "./Skan";
 import {Singular, SingularConfig} from "singular-react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import NotifService from './NotifService';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,17 +40,23 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {};
+
+        this.notif = new NotifService(
+            this.onRegister.bind(this),
+            this.onNotif.bind(this),
+            this.onAction.bind(this)
+        );
+
         // This is to use for Singular to navigate to deeplink tab
         this.navigationRef = React.createRef();
 
-
-        const config = new SingularConfig("<API_KEY>", "<API_SECRET>");
+        const config = new SingularConfig("realprodcorp1", "d38bfbce70b42a70fe920f425e73d123");
 
         config.withLoggingEnabled();
-
         config.withLogLevel(3);
+        config.withPushNotificationLinkPath([["sng_link"]]);
 
-        
         // Handling Singular links
         // This is important to add in order to get Singular Links to work
         config.withSingularLink(singularLinksParams => {
@@ -66,40 +87,30 @@ export default class App extends React.Component {
         Singular.init(config);
     }
 
+  onRegister(token) {
+    this.setState({registerToken: token.token, fcmRegistered: true});
+  }
+
+  onNotif(notif) {
+    Alert.alert(notif.title, notif.message);
+  }
+
+  onAction(notif) {
+      Alert.alert(notif.title, notif.message);
+  }
+
     render() {
     return (
-            <NavigationContainer ref={this.navigationRef}>
-                    <Tab.Navigator
-                        screenOptions={({ route }) => ({
-                            tabBarIcon: ({ focused, color, size }) => {
-                                if (route.name === 'Custom Events') {
-                                    return <Ionicons name='pencil' size={size} color={color} />
-                                } else if (route.name === 'Revenue') {
-                                    return <FontAwesome name='dollar' size={size} color={color} />
-                                } else if (route.name === 'Identity') {
-                                    return <Ionicons name='person' size={size} color={color} />
-                                } else if (route.name === 'Deep Links') {
-                                    return <FontAwesome name='link' size={size} color={color} />
-                                }else if (route.name === 'SKAN') {
-                                    return <FontAwesome name='line-chart' size={size} color={color} />
-                                }
-                            },
-                        })}
-
-                        tabBarOptions={{
-                            activeTintColor: '#007AFF',
-                            inactiveTintColor: 'gray',
-                        }}
-                    >
-                    <Tab.Screen name="Custom Events" component={CustomEvents} />
-                    <Tab.Screen name="Revenue" component={Revenue} />
-                    <Tab.Screen name="Identity" component={Identity} />
-                        <Tab.Screen name="Deep Links">
-                            {props => <DeepLinks {...props} deeplink={this.deeplink} passthrough={this.passthrough} isDeferred={this.isDeferred} urlParameters={this.urlParameters}/>}
-                        </Tab.Screen>
-                    <Tab.Screen name="SKAN" component={Skan} />
-                    </Tab.Navigator>
-        </NavigationContainer>
-    );
+            <View
+               style={{
+                 backgroundColor: Colors.black,
+                 flex: 1,
+                 justifyContent: 'center',
+                 alignItems: 'center',
+                 alignContent: 'center',
+               }}>
+               <Text> Push Notification!! </Text>
+             </View>
+              );
   }
 }
