@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "175092351089",
+    "project_id": "singularsampleapp",
+    "storage_bucket": "singularsampleapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175092351089:android:3a11e9318bb2dc16dadbd0",
+        "android_client_info": {
+          "package_name": "net.singular.singularsampleapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD64u_iUyZPcKVbbjo7ZtMdcfO5I4Y21A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

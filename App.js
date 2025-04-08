@@ -24,17 +24,20 @@ import {
 } from 'react-native-permissions';
 import firebase from '@react-native-firebase/app';
 import messaging from '@react-native-firebase/messaging';
+import {PermissionsAndroid} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 export const isIos = () => Platform.OS === 'ios';
 export const isAndroid = () => Platform.OS === 'android';
-export const getPlatformVersion = () => Number(Platform.Version);
+//export const getPlatformVersion = () => Number(Platform.Version);
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
 
-   if(isIos() || (isAndroid() && getPlatformVersion() >= 33)){
+        firebase.initializeApp();
+
+   if(isIos() || isAndroid()) {
         this.requestUserPermission();
    }
 
@@ -44,13 +47,13 @@ messaging().onNotificationOpenedApp((notification) => {
 });
         this.getFcmToken();
 
-//        const unsubscribe = messaging().onMessage(async remoteMessage => {
-//                console.log('Message handled in the foreground!', JSON.stringify(remoteMessage));
-//            });
+        const unsubscribe = messaging().onMessage(async remoteMessage => {
+                console.log('Message handled in the foreground!', JSON.stringify(remoteMessage));
+            });
 
-//    const test = messaging().setBackgroundMessageHandler(async remoteMessage => {
-//        console.log('Message handled in the background!', remoteMessage);
-//    });
+    const test = messaging().setBackgroundMessageHandler(async remoteMessage => {
+        console.log('Message handled in the background!', remoteMessage);
+    });
 
         // This is to use for Singular to navigate to deeplink tab
 //        this.navigationRef = React.createRef();

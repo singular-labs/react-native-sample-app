@@ -1,4 +1,4 @@
-package com.singularsampleapp;
+package net.singular.singularsampleapp;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
