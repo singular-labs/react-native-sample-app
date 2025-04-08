@@ -18,53 +18,96 @@ import Skan from "./Skan";
 import {Singular, SingularConfig} from "singular-react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import {
+  RESULTS,
+  requestNotifications,
+} from 'react-native-permissions';
+import firebase from '@react-native-firebase/app';
+import messaging from '@react-native-firebase/messaging';
 
 const Tab = createBottomTabNavigator();
+export const isIos = () => Platform.OS === 'ios';
+export const isAndroid = () => Platform.OS === 'android';
+export const getPlatformVersion = () => Number(Platform.Version);
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
 
+   if(isIos() || (isAndroid() && getPlatformVersion() >= 33)){
+        this.requestUserPermission();
+   }
+
+messaging().onNotificationOpenedApp((notification) => {
+  console.log('Background Notification', JSON.stringify(notification));
+  // Handle Your notification here
+});
+        this.getFcmToken();
+
+//        const unsubscribe = messaging().onMessage(async remoteMessage => {
+//                console.log('Message handled in the foreground!', JSON.stringify(remoteMessage));
+//            });
+
+//    const test = messaging().setBackgroundMessageHandler(async remoteMessage => {
+//        console.log('Message handled in the background!', remoteMessage);
+//    });
+
         // This is to use for Singular to navigate to deeplink tab
-        this.navigationRef = React.createRef();
+//        this.navigationRef = React.createRef();
 
-
-        const config = new SingularConfig("<API_KEY>", "<API_SECRET>");
-
-        config.withLoggingEnabled();
-
-        config.withLogLevel(3);
-
-        
-        // Handling Singular links
-        // This is important to add in order to get Singular Links to work
-        config.withSingularLink(singularLinksParams => {
-             this.deeplink = singularLinksParams.deeplink;
-             this.passthrough = singularLinksParams.passthrough;
-             this.isDeferred = singularLinksParams.isDeferred;
-             this.urlParameters = singularLinksParams.urlParameters;
-            // Add your code here to handle the deep link
-            // When the app is opened using a deeplink, we open the deeplink tab
-            this.navigationRef.current?.navigate("Deep Links");
-        });
-
-        // Enable use of SKAN for iOS14 tracking
-        // Singular will call registerAppForAdNetworkAttribution for you
-        config.skAdNetworkEnabled = true;
-
-        // Use withCustomUserId if you want to have the custom user id on the first session
-        // Once set, the Custom User Id will persist between runs until `Singular.unsetCustomUserId()` is called.
-        config.withCustomUserId("test@email.com");
-
-        // Enable manual conversion value updates
-        // IMPORTANT: set as false (or just don't set - it defaults to false) to let Singular manage conversion values
-        config.manualSkanConversionManagement = true;
-        config.withConversionValuesUpdatedHandler((values) => {
-            console.log('conversion values updated ' + values.conversionValue + ' coarse: '  + values.coarse + ' lock: ' + (values.lock ? 'true' : 'false'));
-        });
-
-        Singular.init(config);
+//        const config = new SingularConfig("<API_KEY>", "<API_SECRET>");
+//
+//        config.withLoggingEnabled();
+//
+//        config.withLogLevel(3);
+//
+//
+//        // Handling Singular links
+//        // This is important to add in order to get Singular Links to work
+//        config.withSingularLink(singularLinksParams => {
+//             this.deeplink = singularLinksParams.deeplink;
+//             this.passthrough = singularLinksParams.passthrough;
+//             this.isDeferred = singularLinksParams.isDeferred;
+//             this.urlParameters = singularLinksParams.urlParameters;
+//            // Add your code here to handle the deep link
+//            // When the app is opened using a deeplink, we open the deeplink tab
+//            this.navigationRef.current?.navigate("Deep Links");
+//        });
+//
+//        // Enable use of SKAN for iOS14 tracking
+//        // Singular will call registerAppForAdNetworkAttribution for you
+//        config.skAdNetworkEnabled = true;
+//
+//        // Use withCustomUserId if you want to have the custom user id on the first session
+//        // Once set, the Custom User Id will persist between runs until `Singular.unsetCustomUserId()` is called.
+//        config.withCustomUserId("test@email.com");
+//
+//        // Enable manual conversion value updates
+//        // IMPORTANT: set as false (or just don't set - it defaults to false) to let Singular manage conversion values
+//        config.manualSkanConversionManagement = true;
+//        config.withConversionValuesUpdatedHandler((values) => {
+//            console.log('conversion values updated ' + values.conversionValue + ' coarse: '  + values.coarse + ' lock: ' + (values.lock ? 'true' : 'false'));
+//        });
+//
+//        Singular.init(config);
     }
+
+
+    async requestUserPermission() {
+            const authStatus = await messaging().requestPermission();
+            const enabled =
+            authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+            authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+            if (enabled) {
+                console.log('Authorization status:', authStatus);
+            }
+        }
+
+        async getFcmToken() {
+          const token = await messaging().getToken();
+          console.log('FCM Token:', token);
+        }
 
     render() {
     return (
@@ -101,5 +144,5 @@ export default class App extends React.Component {
                     </Tab.Navigator>
         </NavigationContainer>
     );
-  }
+  };
 }

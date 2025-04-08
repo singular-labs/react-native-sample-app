@@ -7,15 +7,19 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build:ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'"
   },
   "dependencies": {
     "@fortawesome/react-native-fontawesome": "^0.2.6",
     "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-firebase/app": "^21.13.0",
+    "@react-native-firebase/messaging": "^21.13.0",
     "@react-native-picker/picker": "^1.9.4",
     "@react-navigation/bottom-tabs": "^5.11.2",
     "@react-navigation/native": "^5.8.10",
     "@react-navigation/stack": "^5.12.8",
+    "add": "^2.0.6",
     "react": "17.0.2",
     "react-native": "0.68.1",
     "react-native-fontawesome": "^7.0.0",
@@ -23,7 +27,7 @@
     "react-native-reanimated": "^2.7.0",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "^2.15.0",
-    "react-native-vector-icons": "^7.1.0",
+    "react-native-vector-icons": "^10.2.0",
     "singular-react-native": "^3.1.13"
   },
   "devDependencies": {
