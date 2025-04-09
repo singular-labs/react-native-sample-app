@@ -29,70 +29,56 @@ import {PermissionsAndroid} from 'react-native';
 const Tab = createBottomTabNavigator();
 export const isIos = () => Platform.OS === 'ios';
 export const isAndroid = () => Platform.OS === 'android';
-//export const getPlatformVersion = () => Number(Platform.Version);
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
 
-        firebase.initializeApp();
+//        firebase.initializeApp();
 
    if(isIos() || isAndroid()) {
         this.requestUserPermission();
    }
 
-messaging().onNotificationOpenedApp((notification) => {
-  console.log('Background Notification', JSON.stringify(notification));
-  // Handle Your notification here
-});
-        this.getFcmToken();
+    this.getFcmToken();
 
-        const unsubscribe = messaging().onMessage(async remoteMessage => {
-                console.log('Message handled in the foreground!', JSON.stringify(remoteMessage));
-            });
+        const config = new SingularConfig("realprodcorp1", "d38bfbce70b42a70fe920f425e73d123");
 
-    const test = messaging().setBackgroundMessageHandler(async remoteMessage => {
-        console.log('Message handled in the background!', remoteMessage);
-    });
+        config.withLoggingEnabled();
 
-        // This is to use for Singular to navigate to deeplink tab
-//        this.navigationRef = React.createRef();
+        config.withLogLevel(3);
 
-//        const config = new SingularConfig("<API_KEY>", "<API_SECRET>");
-//
-//        config.withLoggingEnabled();
-//
-//        config.withLogLevel(3);
-//
-//
-//        // Handling Singular links
-//        // This is important to add in order to get Singular Links to work
-//        config.withSingularLink(singularLinksParams => {
-//             this.deeplink = singularLinksParams.deeplink;
-//             this.passthrough = singularLinksParams.passthrough;
-//             this.isDeferred = singularLinksParams.isDeferred;
-//             this.urlParameters = singularLinksParams.urlParameters;
-//            // Add your code here to handle the deep link
-//            // When the app is opened using a deeplink, we open the deeplink tab
-//            this.navigationRef.current?.navigate("Deep Links");
-//        });
-//
-//        // Enable use of SKAN for iOS14 tracking
-//        // Singular will call registerAppForAdNetworkAttribution for you
-//        config.skAdNetworkEnabled = true;
-//
-//        // Use withCustomUserId if you want to have the custom user id on the first session
-//        // Once set, the Custom User Id will persist between runs until `Singular.unsetCustomUserId()` is called.
-//        config.withCustomUserId("test@email.com");
-//
-//        // Enable manual conversion value updates
-//        // IMPORTANT: set as false (or just don't set - it defaults to false) to let Singular manage conversion values
-//        config.manualSkanConversionManagement = true;
-//        config.withConversionValuesUpdatedHandler((values) => {
-//            console.log('conversion values updated ' + values.conversionValue + ' coarse: '  + values.coarse + ' lock: ' + (values.lock ? 'true' : 'false'));
-//        });
-//
-//        Singular.init(config);
+        // Handling Singular links
+        // This is important to add in order to get Singular Links to work
+        config.withSingularLink(singularLinksParams => {
+             this.deeplink = singularLinksParams.deeplink;
+             this.passthrough = singularLinksParams.passthrough;
+             this.isDeferred = singularLinksParams.isDeferred;
+             this.urlParameters = singularLinksParams.urlParameters;
+             console.log('deeplink ' + this.deeplink + ' isdeferred: '  + this.isDeferred);
+
+            // Add your code here to handle the deep link
+            // When the app is opened using a deeplink, we open the deeplink tab
+        });
+
+        // Enable use of SKAN for iOS14 tracking
+        // Singular will call registerAppForAdNetworkAttribution for you
+        config.skAdNetworkEnabled = true;
+
+        // Use withCustomUserId if you want to have the custom user id on the first session
+        // Once set, the Custom User Id will persist between runs until `Singular.unsetCustomUserId()` is called.
+        config.withCustomUserId("test@email.com");
+
+        // Enable manual conversion value updates
+        // IMPORTANT: set as false (or just don't set - it defaults to false) to let Singular manage conversion values
+        config.manualSkanConversionManagement = true;
+        config.withConversionValuesUpdatedHandler((values) => {
+            console.log('conversion values updated ' + values.conversionValue + ' coarse: '  + values.coarse + ' lock: ' + (values.lock ? 'true' : 'false'));
+        });
+
+        config.withPushNotificationsLinkPaths([['sng_link']]);
+
+        Singular.init(config);
     }
 
 
@@ -149,3 +135,4 @@ messaging().onNotificationOpenedApp((notification) => {
     );
   };
 }
+
