@@ -40,8 +40,7 @@ export default class App extends React.Component {
         this.requestUserPermission();
    }
 
-    this.getFcmToken();
-
+        this.getFcmToken();
         const config = new SingularConfig("realprodcorp1", "d38bfbce70b42a70fe920f425e73d123");
 
         config.withLoggingEnabled();
